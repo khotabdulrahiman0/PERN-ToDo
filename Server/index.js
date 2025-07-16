@@ -8,8 +8,18 @@ const bcrypt =require("bcrypt")
 const jwt =require("jsonwebtoken");
 const port = process.env.PORT || 4000
 
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://todo-frontend-sivw.onrender.com" 
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 app.use(express.json());
-app.use(cors());
+
 
 
 app.get("/todos/:useremail",async(req,res)=>{
